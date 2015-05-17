@@ -14,7 +14,7 @@
   <div ng-show="showAllUsersOnThisProject">
     <br>
     <p>Voici la liste des personnes qui ont un rôle dans ce projet :</p>
-    <div ng-repeat="userOnProject in usersOnThisProject">
+    <div ng-repeat="userOnProject in usersOnThisProject" class="cursorChanged selection">
       <p>
         {{userOnProject.name}}, {{userOnProject.surname}}
         <br>
@@ -25,7 +25,7 @@
     <img ng-src="../images/add.gif" alt="Ajout" ng-click="addAUserToThisProject()" />
 
     <div ng-show="showSelectionOfUser" class="divScrollable">
-      <div ng-repeat="oneUser in allUsers" class="cursorChanged" ng-click="addThisUserToThisProject(oneUser.id,currentProject.id)">
+      <div ng-repeat="oneUser in allUsers" class="cursorChanged selection" ng-click="addThisUserToThisProject(oneUser.id,currentProject.id)">
         <div class="selection"><p>{{oneUser.name}}, {{oneUser.surname}}</p></div>
       </div>
     </div>

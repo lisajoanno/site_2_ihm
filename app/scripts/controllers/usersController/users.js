@@ -202,14 +202,14 @@ angular.module('pooIhmApp')
     var changeButtonName = function() {
       if ($scope.buttonName == "Voir ses projets") $scope.buttonName = "Cacher ses projets";
       else $scope.buttonName = "Voir ses projets";
-    }
+    };
 
 
 
 
     //                                                    SUPPRESSION PROJET PAR USER
     var deleteProjectFromUserSuccess = function(data) {
-      // Nothing
+      $scope.showAllProjectsOfThisUser = false;
     };
 
     var deleteProjectFromUserError = function(data) {

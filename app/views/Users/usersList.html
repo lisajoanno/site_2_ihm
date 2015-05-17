@@ -17,7 +17,7 @@
   <div ng-show="showAllProjectsOfThisUser">
     <br>
     <p>Voici la liste des projets de cette personne :</p>
-    <div ng-repeat="projectOfUser in projectsOfThisUser">
+    <div ng-repeat="projectOfUser in projectsOfThisUser" class="cursorChanged selection">
       <p>
         {{projectOfUser.title}}, {{projectOfUser.year}}
         <img ng-src="../images/delete.gif" alt="Suppression" ng-click="deleteThisProjectFromThisUser(currentUser.id,projectOfUser.id)" /><br>
@@ -81,7 +81,7 @@
   <div class="detectWidth">
 
     <div ng-repeat="user in users | filter:searchText" ng-mouseover="hoverIn()"
-         ng-mouseleave="hoverOut()" ng-click="clicked(user.id)" class="cursorChanged">
+         ng-mouseleave="hoverOut()" ng-click="clicked(user.id)" class="cursorChanged selection">
 
       {{user.name}}, {{user.surname}}
 

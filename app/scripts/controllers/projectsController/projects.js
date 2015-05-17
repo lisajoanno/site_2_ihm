@@ -27,7 +27,7 @@ angular.module('pooIhmApp')
     };
 
     var getAllError = function(data) {
-      // nothing
+
     };
 
 
@@ -72,6 +72,7 @@ angular.module('pooIhmApp')
      */
     $scope.clicked = function(id){
       $scope.buttonName = "Voir les participants";
+      $scope.showUpdate = false;
       $scope.showAllUsersOnThisProject = false;
       $scope.showSelectionOfUser = false;
       functionGet(id);
