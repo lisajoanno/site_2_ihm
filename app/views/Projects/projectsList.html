@@ -1,0 +1,123 @@
+<div class="droite" ng-show="!showUpdate" id="maxScrollDiv">
+  <form>
+    <p> Titre : {{currentProject.title}}  </p>
+    <p> Description : {{currentProject.description}}</p>
+    <p> Année : {{currentProject.year}}</p>
+    <p> Created at : {{currentProject.createdAt}}</p>
+    <p> Updated at : {{currentProject.updatedAt}}</p>
+    <input type="submit" class="btn btn-default" value="Update" ng-click="updateBalise()" />
+    <input type="submit" class="btn btn-default" value="Delete" ng-click="deleteProject(currentProject.id)"/>
+
+    <br><br>
+    <input type="submit" class="btn btn-default" value="{{buttonName}}" ng-click="showUsersOnThisProject(currentProject.id)">
+
+  </form>
+
+
+  <div ng-show="showAllUsersOnThisProject">
+    <br>
+    <p>Voici la liste des personnes qui ont un rôle dans ce projet :</p>
+    <div ng-repeat="userOnProject in usersOnThisProject">
+      <p>
+        {{userOnProject.name}}, {{userOnProject.surname}}
+        <br>
+        {{userOnProject.email}} {{userOnProject.website}}</p>
+    </div>
+
+
+    <img ng-src="../images/add.gif" alt="Ajout" ng-click="addAUserToThisProject()" />
+
+    <div ng-show="showSelectionOfUser" id="divScrollable">
+      <div ng-repeat="oneUser in allUsers" class="cursorChanged" ng-click="addThisUserToThisProject(oneUser.id,currentProject.id)">
+        <p>{{oneUser.name}}, {{oneUser.surname}}</p>
+
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="droite2" ng-show="showUpdate">
+  <form class="form-horizontal" name="updateForm">
+
+    <!-- TITRE -->
+    <div class="form-group">
+      <label class="col-sm-3 control-label" for="title">Titre</label>
+      <div class="col-sm-9">
+        <input id="title" class="form-control" type="text" ng-model="newTitleValue"/>
+      </div>
+    </div>
+
+    <!-- DESCRIPTION -->
+    <div class="form-group">
+      <label class="col-sm-3 control-label" for="descr">Description</label>
+      <div class="col-sm-9">
+        <input id="descr" class="form-control" type="text" ng-model="newDescriptionValue"/>
+      </div>
+    </div>
+
+
+    <!-- YEAR -->
+    <div class="form-group">
+      <label class="col-sm-3 control-label" for="year">Year</label>
+      <div class="col-sm-9">
+        <input id="year" class="form-control" type="number" ng-model="newYearValue"/>
+      </div>
+    </div>
+
+    <!-- VALIDATION -->
+    <div class="form-group">
+      <input type="submit" class="btn btn-default" value="Update" ng-disabled="updateForm.$invalid" ng-click="modifProject(currentProject.id,newTitleValue,newDescriptionValue,newYearValue)" />
+      <input type="submit" class="btn btn-default" value="Cancel" ng-click="normalBalise()" />
+    </div>
+
+  </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>
+  <h3>Rechercher un projet par titre :</h3>
+  <label for="recherche"></label>
+  <input id="recherche" ng-model="searchText"/>
+
+  <h3>Liste des projets :</h3>
+
+
+  <div class="detectWidth">
+
+    <table>
+      <caption></caption>
+      <tr class="headTable"><td colspan="2">Titre</td><td>Année</td></tr>
+    </table>
+
+
+    <table>
+      <caption></caption>
+      <tr ng-repeat="project in projects | filter:searchText" ng-click="clicked(project.id)" class="cursorChanged">
+        <td colspan="2">{{ project.title }}</td>
+        <td>{{ project.year }}</td>
+      </tr>
+    </table>
+
+
+  </div>
+</div>

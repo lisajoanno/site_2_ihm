@@ -1,0 +1,55 @@
+<div ng-show="loginAlertMessage">  {{this.x}}</div>
+
+<div ng-app="sample">
+  <h3>Vous pouvez ici ajouter un projet.</h3><br><br>
+
+  <form class="form-horizontal" name="registerProjectForm">
+
+    <!-- TITRE -->
+    <div class="form-group">
+      <label class="col-sm-3 control-label" for="title">Titre <span class="red">*</span></label>
+      <div class="col-sm-9">
+        <input id="title" class="form-control" type="text"
+               placeholder="Titre" required ng-model="titleChosen" />
+      </div>
+    </div>
+
+    <!-- DESCRIPTION -->
+    <div class="form-group">
+      <label class="col-sm-3 control-label" for="descr">Description  </label>
+      <div class="col-sm-9">
+        <input id="descr" class="form-control" type="text"
+               placeholder="Description" ng-model="descriptionChosen" />
+      </div>
+    </div>
+
+
+    <!-- YEAR -->
+    <div class="form-group">
+      <label class="col-sm-3 control-label" for="year">Année <span class="red">*</span></label>
+      <div class="col-sm-9">
+        <input id="year" class="form-control" type="number"
+               placeholder="Année" required ng-model="yearChosen" />
+      </div>
+    </div>
+
+    <!-- VALIDATION -->
+    <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-9">
+        <input type="submit" class="btn btn-default" value="Ajouter ce projet" ng-disabled="registerProjectForm.$invalid"
+               ng-click="validNewProject(titleChosen,descriptionChosen,yearChosen)"/>
+      </div>
+    </div>
+
+
+    <div class="col-sm-5 control-label"><span><span class="red">*</span> : champs obligatoires.</span></div>
+
+  </form>
+
+
+
+
+
+
+</div>
+

@@ -1,0 +1,96 @@
+<div class="droite" ng-show="!showUpdate">
+  <form>
+    <p> Nom : {{currentUser.name}}  </p>
+    <p> Prénom : {{currentUser.surname}}</p>
+    <p> Email : {{currentUser.email}}</p>
+    <p> Website : <a href="{{currentUser.website}}">{{currentUser.website}}</a></p>
+    <p> Created at : {{currentUser.createdAt}}</p>
+    <p> Updated at : {{currentUser.updatedAt}}</p>
+    <input type="submit" class="btn btn-default" value="Update" ng-click="updateBalise()" />
+    <input type="submit" class="btn btn-default" value="Delete" ng-click="deleteUser(currentUser.id); refreshDiv()"/>
+
+    <br><br>
+    <input type="submit" class="btn btn-default" value="{{buttonName}}" ng-click="showProjectsOfThisUser(currentUser.id)"/>
+  </form>
+
+
+  <div ng-show="showAllProjectsOfThisUser">
+    <br>
+    <p>Voici la liste des projets de cette personne :</p>
+    <div ng-repeat="projectOfUser in projectsOfThisUser">
+      <p>
+        {{projectOfUser.title}}, {{projectOfUser.year}}
+        <img ng-src="../images/delete.gif" alt="Suppression" ng-click="deleteThisProjectFromThisUser(currentUser.id,projectOfUser.id)" /><br>
+        {{projectOfUser.description}}
+      </p>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="droite2" ng-show="showUpdate" ng-app="sample">
+  <form class="form-horizontal" name="updateForm">
+
+    <!-- NOM -->
+    <div class="form-group">
+      <label class="col-sm-3 control-label" for="name">Nom</label>
+      <div class="col-sm-9">
+        <input id="name" class="form-control" type="text" ng-model="newNameValue"/>
+      </div>
+    </div>
+
+    <!-- PRENOM -->
+    <div class="form-group">
+      <label class="col-sm-3 control-label" for="prenom">Prénom</label>
+      <div class="col-sm-9">
+        <input id="prenom" class="form-control" type="text" ng-model="newSurnameValue"/>
+      </div>
+    </div>
+
+    <!-- EMAIL -->
+    <div class="form-group" ng-class="{'has-error': updateForm.$dirty && updateForm.Email.$invalid}">
+      <label class="col-sm-3 control-label" for="Email">Email</label>
+      <div class="col-sm-9">
+        <input id="Email" type="email" class="form-control" ng-model="newEmailValue" />
+      </div>
+    </div>
+
+    <!-- WEBSITE -->
+    <div class="form-group">
+      <label class="col-sm-3 control-label" for="website">Website</label>
+      <div class="col-sm-9">
+        <input id="website" class="form-control" type="text" ng-model="newWebsiteValue"/>
+      </div>
+    </div>
+
+    <!-- VALIDATION -->
+    <div class="form-group">
+      <input type="submit" class="btn btn-default" value="Update" ng-disabled="updateForm.$invalid" ng-click="modifUser(currentUser.id,newNameValue,newSurnameValue,newEmailValue,newWebsiteValue)" />
+      <input type="submit" class="btn btn-default" value="Cancel" ng-click="normalBalise()" />
+    </div>
+
+  </form>
+</div>
+
+<div>
+  <h3>Recherche :</h3>
+  <label for="recherche"></label>
+  <input id="recherche" ng-model="searchText"/>
+  <h3>Liste des utilisateurs:</h3>
+  <div class="detectWidth">
+
+    <div ng-repeat="user in users | filter:searchText" ng-mouseover="hoverIn()"
+         ng-mouseleave="hoverOut()" ng-click="clicked(user.id)" class="cursorChanged">
+
+      {{user.name}}, {{user.surname}}
+
+      <span ng-show="hoverEdit" class="pInLine" id="coloredBlue" >
+         Détails...
+      </span>
+    </div>
+  </div>
+</div>
+
+
+

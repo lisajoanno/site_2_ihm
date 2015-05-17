@@ -1,0 +1,35 @@
+.droite {
+  position: fixed;
+  left: 50%;
+}
+
+.droite2 {
+  position: fixed;
+  left: 50%;
+  line-height: 2.1  ;
+
+}
+
+.champ {
+  height: 20px;
+}
+
+.cursorChanged {
+  cursor:pointer;
+}
+
+.pInLine {
+  display:inline;
+}
+
+#coloredBlue {
+  color: dodgerblue;
+}
+
+.detectWidth {
+  width:auto; height:auto; float:left;
+}
+
+.red {
+  color:red;
+}

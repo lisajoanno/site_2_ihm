@@ -1,0 +1,50 @@
+
+
+table
+{
+  width:100%;
+  max-width:300px;
+  text-align:center;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+caption
+{
+  caption-side:bottom;
+  font-weight:bold;
+  font-style:italic;
+  margin:4px;
+}
+
+table,th, td
+{
+  border: 1px solid gray;
+}
+
+th, td
+{
+  height: 24px;
+  padding:4px;
+  vertical-align:middle;
+}
+
+.rowtitle
+{
+  background: #9CF;
+}
+
+table tr:nth-child(odd) td
+{
+  background-color: #E8E8FF;
+}
+
+#divScrollable{
+  height:100pt;
+  overflow:auto;
+}
+
+#maxScrollDiv{
+  height: 75%;;
+  overflow:auto;
+}
