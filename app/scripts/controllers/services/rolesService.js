@@ -1,5 +1,8 @@
 'use strict'
 
+/**
+ * Service pour ajouter/récupérer/supprimer/mettre à jour des roles.
+ */
 angular.module('pooIhmApp').service('Roles',['$http',function Roles($http) {
 
   // GET ALL

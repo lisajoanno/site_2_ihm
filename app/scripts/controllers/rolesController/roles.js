@@ -52,7 +52,6 @@ angular.module('pooIhmApp')
     };
 
     var getUserIdError = function(data) {
-      // TODO
     };
 
     var getProjectIdSuccess = function(data) {
@@ -60,7 +59,6 @@ angular.module('pooIhmApp')
     };
 
     var getProjectIdError = function(data) {
-      // TODO
     };
 
     var getSuccess = function(data) {
@@ -191,12 +189,22 @@ angular.module('pooIhmApp')
     var validChangeUserError = function(data) {
     };
 
+    /**
+     * Cette méthode sert à changer l'utilisateur affecté à un role.
+     * @param role : le role en question.
+     * @param user : le nouvel utilisateur.
+     */
     $scope.validChangeUser = function(role,user) {
       var postObject = new Object();
       postObject.name = role.name;
       postObject.UserId = user.id;
       postObject.ProjectId = role.ProjectId;
       var s=JSON.stringify(postObject);
+      /*
+      La fonction d'update ne voulant pas fonctionner (cf dernière fonction dans linkUsersProjectsService),
+      on utilise la manière brutale.
+      On supprime le role et on en crée un nouveau avec les modifications.
+       */
       Roles.delete(role.id,deleteSuccess,deleteError);
       Roles.post(s,validChangeUserSuccess,validChangeUserError);
       Roles.getAll(getAllSuccess,getAllError);
@@ -225,6 +233,11 @@ angular.module('pooIhmApp')
     var validChangeProjectError = function(data) {
     };
 
+    /**
+     * Cette méthode sert à changer le projet affecté à un role.
+     * @param role : le role dont il est question.
+     * @param project : le nouveau projet.
+     */
     $scope.validChangeProject = function(role,project) {
       var postObject = new Object();
       postObject.name = role.name;
