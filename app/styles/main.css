@@ -105,3 +105,12 @@ input[type=number] {
   text-indent:30px;
   display:block;
 }
+
+#presentationFooter {
+  background-color: #e5e5e5;
+  border-radius: 5px 70px 5px 70px;
+}
+
+#listPresentation {
+  list-style-type: square;
+}

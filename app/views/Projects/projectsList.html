@@ -23,7 +23,7 @@
 
 
     <img ng-src="../images/add.gif" alt="Ajout" ng-click="addAUserToThisProject()" />
-
+    <br><br>
     <div ng-show="showSelectionOfUser" class="divScrollable">
       <div ng-repeat="oneUser in allUsers" class="cursorChanged selection" ng-click="addThisUserToThisProject(oneUser.id,currentProject.id)">
         <div class="selection"><p>{{oneUser.name}}, {{oneUser.surname}}</p></div>
@@ -64,7 +64,7 @@
 
     <!-- YEAR -->
     <div class="form-group">
-      <label class="col-sm-3 control-label" for="year">Year</label>
+      <label class="col-sm-3 control-label" for="year">Année</label>
       <div class="col-sm-9">
         <input id="year" class="form-control" type="number" ng-model="newYearValue"/>
       </div>
@@ -109,7 +109,7 @@
 
     <table>
       <caption></caption>
-      <tr ng-repeat="project in projects | filter:searchText" ng-click="clicked(project.id)" class="cursorChanged">
+      <tr ng-repeat="project in projects | filter:searchText" ng-click="clicked(project.id)" class="cursorChanged selection">
         <td colspan="2">{{ project.title }}</td>
         <td>{{ project.year }}</td>
       </tr>

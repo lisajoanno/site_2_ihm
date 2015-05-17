@@ -8,7 +8,7 @@
  * Controller of the pooIhmApp
  */
 angular.module('pooIhmApp')
-  .controller('AddRolesCtrl', ['$scope', '$http', 'Roles', 'Users', 'Projects', function ($scope, $http, Roles, Users, Projects) {
+  .controller('AddRolesCtrl', ['$scope', '$http', 'Roles', 'Users', 'Projects', '$window', function ($scope, $http, Roles, Users, Projects, $window) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -70,12 +70,20 @@ angular.module('pooIhmApp')
 
 
     $scope.validNewRole = function(nameChosen) {
-      var postObject = new Object();
-      postObject.name = nameChosen;
-      postObject.UserId = userToAdd.id;
-      postObject.ProjectId = projectToAdd.id;
-      var s=JSON.stringify(postObject);
+      if (userToAdd == null) {
+        $window.alert( "Attention, vous devez choisir un utilisateur à qui affecter ce rôle.")
+      }
+      if (projectToAdd == null) {
+        $window.alert("Attention, vous devez choisir un projet à qui affecter ce rôle.");
+      }
+      if (userToAdd != null && projectToAdd != null) {
+        var postObject = new Object();
+        postObject.name = nameChosen;
+        postObject.UserId = userToAdd.id;
+        postObject.ProjectId = projectToAdd.id;
+        var s = JSON.stringify(postObject);
 
-      functionPost(s);
+        functionPost(s);
+      }
     }
   }]);

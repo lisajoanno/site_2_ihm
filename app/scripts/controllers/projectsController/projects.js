@@ -120,7 +120,6 @@ angular.module('pooIhmApp')
 
     //                                                 UPDATE ONE PROJECT
     var updateSuccess = function(data,id) {
-      // TODO est-ce beau?
       Projects.getAll(getAllSuccess,getAllError);
       functionGet(id);
       showNormalBalise();
@@ -229,6 +228,7 @@ angular.module('pooIhmApp')
     var addUserToThisProjectSuccess = function(data) {
       $scope.showSelectionOfUser = false;
       $scope.showAllUsersOnThisProject = false;
+      changeButtonName();
     };
 
     var addUserToThisProjectError = function(data) {

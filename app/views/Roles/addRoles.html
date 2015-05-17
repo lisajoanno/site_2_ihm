@@ -1,4 +1,4 @@
-<div ng-show="loginAlertMessage" xmlns="http://www.w3.org/1999/html">  {{this.x}}</div>
+<div ng-show="loginAlertMessage">  {{this.x}}</div>
 
 <div ng-app="sample">
   <h3>Vous pouvez ici ajouter un role.</h3><br><br>
@@ -10,7 +10,7 @@
       <label class="col-sm-3 control-label" for="title">Nom </label>
       <div class="col-sm-9">
         <input id="title" class="form-control" type="text"
-               placeholder="Nom du projet" required ng-model="nameChosen" />
+               placeholder="Nom du rôle" required ng-model="nameChosen" />
       </div>
     </div>
 
@@ -49,13 +49,8 @@
 
 
     <div class="col-sm-5 control-label"><span><span class="red">*</span> : champs obligatoires.</span></div>
+    <br><br>
 
   </form>
-
-
-
-
-
-
 </div>
 

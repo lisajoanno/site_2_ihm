@@ -178,7 +178,7 @@ angular.module('pooIhmApp')
     };
 
     $scope.changeUser = function() {
-      $scope.showChangeUser = true;
+      $scope.showChangeUser = !$scope.showChangeUser;
       $scope.showChangeProject = false;
       Users.getAll(getAllUsersSuccess,getAllUsersError);
     };
@@ -215,7 +215,7 @@ angular.module('pooIhmApp')
 
     $scope.changeProject = function() {
       $scope.showChangeUser = false;
-      $scope.showChangeProject = true;
+      $scope.showChangeProject = !$scope.showChangeProject;
       Projects.getAll(getAllProjectsSuccess,getAllProjectsError);
     };
 
