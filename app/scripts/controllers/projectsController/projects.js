@@ -216,7 +216,7 @@ angular.module('pooIhmApp')
     var changeButtonName = function() {
       if ($scope.buttonName == "Voir les participants") $scope.buttonName = "Cacher les participants";
       else $scope.buttonName = "Voir les participants";
-    }
+    };
 
 
 
@@ -226,22 +226,23 @@ angular.module('pooIhmApp')
 
     //
     var addUserToThisProjectSuccess = function(data) {
-      console.log("Ajout d'un user à un projet fonctionnel.");
+      $scope.showSelectionOfUser = false;
+      $scope.showAllUsersOnThisProject = false;
     };
 
     var addUserToThisProjectError = function(data) {
-      console.log("vtff");
+
     };
 
     var functionAddAUserToThisProject = function(userId,projectId) {
-      LinkUsersProjects.putNewUserInProject(userId,projectId,addUserToThisProjectSuccess,addUserToThisProjectError);
+      var userData = {}; // pour le second paramètre du PUT
+      LinkUsersProjects.putNewUserInProject(projectId,userId,userData,addUserToThisProjectSuccess,addUserToThisProjectError);
     };
 
     var loadAllUsersSuccess = function(data) {
       $scope.allUsers = data;
     };
     var loadAllUsersError = function(data) {
-
     };
 
     $scope.addAUserToThisProject = function() {
@@ -249,8 +250,8 @@ angular.module('pooIhmApp')
       Users.getAll(loadAllUsersSuccess,loadAllUsersError);
     };
 
+
     $scope.addThisUserToThisProject = function(userId,projectId) {
-      console.log(userId+ " "+ projectId);
       functionAddAUserToThisProject(userId,projectId);
     }
 

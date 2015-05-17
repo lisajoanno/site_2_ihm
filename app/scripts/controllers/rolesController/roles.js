@@ -8,7 +8,7 @@
  * Controller of the pooIhmApp
  */
 angular.module('pooIhmApp')
-  .controller('RolesCtrl', ['$scope', '$http', 'Roles', 'Users', function ($scope, $http, Roles, Users) {
+  .controller('RolesCtrl', ['$scope', '$http', 'Roles', 'Users', 'Projects','LinkUsersProjects', function ($scope, $http, Roles, Users, Projects, LinkUsersProjects) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -47,9 +47,29 @@ angular.module('pooIhmApp')
 
 
     //                                                 GET ONE ROLE
+    var getUserIdSuccess = function(data) {
+      $scope.currentUserIdName = data.name + " " + data.surname;
+    };
+
+    var getUserIdError = function(data) {
+      // TODO
+    };
+
+    var getProjectIdSuccess = function(data) {
+      $scope.currentProjectIdTitle = data.title;
+    };
+
+    var getProjectIdError = function(data) {
+      // TODO
+    };
+
     var getSuccess = function(data) {
+      $scope.showChangeUser = false;
+      $scope.showChangeProject = false;
       $scope.currentRole = data;
       showNormalBalise();
+      Users.get(data.UserId,getUserIdSuccess,getUserIdError);
+      Projects.get(data.ProjectId,getProjectIdSuccess,getProjectIdError);
     };
 
     var getError = function(data) {
@@ -149,30 +169,73 @@ angular.module('pooIhmApp')
 
 
 
-    var getUserSuccess = function(data) {
-      $scope.users = data;
+    var getAllUsersSuccess = function(data) {
+      $scope.listAllUsers = data;
+    };
+
+    var getAllUsersError = function(data) {
+
     };
 
     $scope.changeUser = function() {
       $scope.showChangeUser = true;
       $scope.showChangeProject = false;
-    };
-
-    $scope.validChangeUser = function() {
-
+      Users.getAll(getAllUsersSuccess,getAllUsersError);
     };
 
 
+
+    var validChangeUserSuccess = function(data) {
+    };
+
+    var validChangeUserError = function(data) {
+    };
+
+    $scope.validChangeUser = function(role,user) {
+      var postObject = new Object();
+      postObject.name = role.name;
+      postObject.UserId = user.id;
+      postObject.ProjectId = role.ProjectId;
+      var s=JSON.stringify(postObject);
+      Roles.delete(role.id,deleteSuccess,deleteError);
+      Roles.post(s,validChangeUserSuccess,validChangeUserError);
+      Roles.getAll(getAllSuccess,getAllError);
+      functionGet(role.id);
+    };
+
+
+
+    var getAllProjectsSuccess = function(data) {
+      $scope.listAllProjects = data;
+    };
+
+    var getAllProjectsError = function(data) {
+
+    };
 
     $scope.changeProject = function() {
-      /**
-       * choper les users & les afficher puis gérer la sélection
-       *
-       * Faire pareil avec les projets
-       */
+      $scope.showChangeUser = false;
+      $scope.showChangeProject = true;
+      Projects.getAll(getAllProjectsSuccess,getAllProjectsError);
     };
 
+    var validChangeProjectSuccess = function(data) {
+    };
 
+    var validChangeProjectError = function(data) {
+    };
+
+    $scope.validChangeProject = function(role,project) {
+      var postObject = new Object();
+      postObject.name = role.name;
+      postObject.UserId = role.UserId;
+      postObject.ProjectId = project.id;
+      var s=JSON.stringify(postObject);
+      Roles.delete(role.id,deleteSuccess,deleteError);
+      Roles.post(s,validChangeProjectSuccess,validChangeProjectError);
+      Roles.getAll(getAllSuccess,getAllError);
+      functionGet(role.id);
+    };
 
 
 

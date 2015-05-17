@@ -1,19 +1,54 @@
-<div class="droite" ng-show="!showUpdate">
+<div class="droite maxScrollDiv" ng-show="!showUpdate">
   <form>
-    <p> Nom : {{currentRole.name}}  </p>
-    <p> User : {{currentRole.UserId}}</p>
-    <p> Projet : {{currentRole.ProjectId}}</p>
+    <p> Nom : {{currentRole.name}}</p>
+    <p> Id du user : {{currentRole.UserId}}</p>
+    <p> User : {{currentUserIdName}}</p>
+    <p> Id du projet : {{currentRole.ProjectId}}</p>
+    <p> Projet : {{currentProjectIdTitle}}</p>
     <p> Created at : {{currentRole.createdAt}}</p>
     <p> Updated at : {{currentRole.updatedAt}}</p>
     <input type="submit" class="btn btn-default" value="Update" ng-click="updateBalise()" />
     <input type="submit" class="btn btn-default" value="Delete" ng-click="deleteRole(currentRole.id)"/>
-    <input type="submit" class="btn btn-default" value="Changer l'user" ng-click="changerUser()" />
+    <input type="submit" class="btn btn-default" value="Changer l'user" ng-click="changeUser()" />
     <input type="submit" class="btn btn-default" value="Changer le projet" ng-click="changeProject()" />
   </form>
+
+
+
+  <div ng-show="showChangeUser">
+    <br>
+    <p>Sélectionnez l'utilisateur à associer à ce role :</p>
+    <div class="divScrollable">
+      <div ng-repeat="cUser in listAllUsers" class="cursorChanged" ng-click="validChangeUser(currentRole,cUser)">
+        <div class="selection">{{cUser.name}}, {{cUser.surname}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div ng-show="showChangeProject">
+    <br>
+    <p>Sélectionnez le projet à associer à ce role :</p>
+    <div class="divScrollable">
+      <div ng-repeat="cProject in listAllProjects" class="cursorChanged" ng-click="validChangeProject(currentRole,cProject)">
+        <div class="selection">{{cProject.title}}, {{cProject.year}}</div>
+      </div>
+    </div>
+  </div>
+
+
 </div>
 
 
-<div class="droite2" ng-show="showUpdate" ng-app="sample">
+
+
+
+
+
+
+
+
+
+<div class="droite2" ng-show="showUpdate" ng-app="sample" id="maxScrollDiv">
   <form class="form-horizontal" name="updateForm">
 
     <!-- NOM -->
@@ -29,22 +64,14 @@
       <input type="submit" class="btn btn-default" value="Update" ng-disabled="updateForm.$invalid" ng-click="modifRole(currentRole.id,newNameValue)" />
       <input type="submit" class="btn btn-default" value="Cancel" ng-click="normalBalise()" />
     </div>
-
-
-    <div ng-show="showChangeUser">
-      <input type="submit" class="btn btn-default" value="Valider" ng-click="validChangeUser(currentRole.id,currentUser.id)"/>
-    </div>
-
-    <div ng-show="showChangeProject">
-
-    </div>
-
-
-
-
-
   </form>
 </div>
+
+
+
+
+
+
 
 <div>
   <h3>Recherche :</h3>

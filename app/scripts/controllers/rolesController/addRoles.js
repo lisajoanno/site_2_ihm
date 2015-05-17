@@ -8,12 +8,44 @@
  * Controller of the pooIhmApp
  */
 angular.module('pooIhmApp')
-  .controller('AddRolesCtrl', ['$scope', '$http', 'Roles', function ($scope, $http, Roles) {
+  .controller('AddRolesCtrl', ['$scope', '$http', 'Roles', 'Users', 'Projects', function ($scope, $http, Roles, Users, Projects) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+    var getAllUsersSuccess = function(data) {
+      $scope.allUsersList = data;
+    };
+    var getAllUsersError = function(data) {
+    };
+    Users.getAll(getAllUsersSuccess,getAllUsersError);
+
+    var getAllProjectsSuccess = function(data) {
+      $scope.allProjetcsList = data;
+    };
+    var getAllProjectsError = function(data) {
+    };
+    Projects.getAll(getAllProjectsSuccess,getAllProjectsError);
+    var userToAdd=null;
+    var projectToAdd=null;
+
+
+
+
+    $scope.clickedOnThisUser = function(user) {
+      $scope.userToAdd = user;
+      userToAdd = user;
+    };
+
+
+
+
+    $scope.clickedOnThisProject = function(project) {
+      $scope.projectToAdd = project;
+      projectToAdd = project;
+    };
+
 
 
 
@@ -40,6 +72,8 @@ angular.module('pooIhmApp')
     $scope.validNewRole = function(nameChosen) {
       var postObject = new Object();
       postObject.name = nameChosen;
+      postObject.UserId = userToAdd.id;
+      postObject.ProjectId = projectToAdd.id;
       var s=JSON.stringify(postObject);
 
       functionPost(s);

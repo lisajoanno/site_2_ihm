@@ -50,12 +50,27 @@ angular.module('pooIhmApp').service('LinkUsersProjects',['$http',function LinkUs
   };
 
   // PUT d'un nouveau user à un projet
-  this.putNewUserInProject = function(projectId,userId,onSuccess,onError) {
-    var userData = {};
-    $http.put('http://poo-ihm-2015-rest.herokuapp.com/api/Projects/' + projectId + "/Users/"+userId,userData)
+  this.putNewUserInProject = function(projectId,userId,userData,onSuccess,onError) {
+    $http.put('http://poo-ihm-2015-rest.herokuapp.com/api/Projects/'+ projectId +'/Users/'+userId,userData)
       .success(function(data) {
         if (data.status == "success") {
-          onSuccess(data.data);
+          onSuccess(data);
+        } else {
+          onError(data);
+        }
+      });
+  };
+
+
+
+
+  this.changeUserOnRole = function(roleId,userId,userData,onSuccess,onError) {
+    console.log(userData);
+    $http.post('http://poo-ihm-2015-rest.herokuapp.com/api/Roles/',userData)
+      .success(function(data) {
+        if (data.status == "success") {
+          console.log("revons!");
+          onSuccess(data);
         } else {
           onError(data);
         }

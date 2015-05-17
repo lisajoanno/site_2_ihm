@@ -1,4 +1,4 @@
-<div class="droite" ng-show="!showUpdate" id="maxScrollDiv">
+<div class="droite maxScrollDiv" ng-show="!showUpdate">
   <form>
     <p> Titre : {{currentProject.title}}  </p>
     <p> Description : {{currentProject.description}}</p>
@@ -7,12 +7,9 @@
     <p> Updated at : {{currentProject.updatedAt}}</p>
     <input type="submit" class="btn btn-default" value="Update" ng-click="updateBalise()" />
     <input type="submit" class="btn btn-default" value="Delete" ng-click="deleteProject(currentProject.id)"/>
-
     <br><br>
     <input type="submit" class="btn btn-default" value="{{buttonName}}" ng-click="showUsersOnThisProject(currentProject.id)">
-
   </form>
-
 
   <div ng-show="showAllUsersOnThisProject">
     <br>
@@ -27,16 +24,16 @@
 
     <img ng-src="../images/add.gif" alt="Ajout" ng-click="addAUserToThisProject()" />
 
-    <div ng-show="showSelectionOfUser" id="divScrollable">
+    <div ng-show="showSelectionOfUser" class="divScrollable">
       <div ng-repeat="oneUser in allUsers" class="cursorChanged" ng-click="addThisUserToThisProject(oneUser.id,currentProject.id)">
-        <p>{{oneUser.name}}, {{oneUser.surname}}</p>
-
+        <div class="selection"><p>{{oneUser.name}}, {{oneUser.surname}}</p></div>
       </div>
     </div>
 
 
   </div>
 </div>
+
 
 
 

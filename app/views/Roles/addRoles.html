@@ -1,4 +1,4 @@
-<div ng-show="loginAlertMessage">  {{this.x}}</div>
+<div ng-show="loginAlertMessage" xmlns="http://www.w3.org/1999/html">  {{this.x}}</div>
 
 <div ng-app="sample">
   <h3>Vous pouvez ici ajouter un role.</h3><br><br>
@@ -7,18 +7,42 @@
 
     <!-- NOM -->
     <div class="form-group">
-      <label class="col-sm-3 control-label" for="title">Nom <span class="red">*</span></label>
+      <label class="col-sm-3 control-label" for="title">Nom </label>
       <div class="col-sm-9">
         <input id="title" class="form-control" type="text"
-               placeholder="Titre" required ng-model="nameChosen" />
+               placeholder="Nom du projet" required ng-model="nameChosen" />
       </div>
     </div>
+
+
+    <!-- USER -->
+    <div class="form-group centrer">
+      <p>Sélectionnez l'utilisateur à associer à ce role :</p>
+      <div class="divScrollable">
+        <div ng-repeat="cUser in allUsersList" class="cursorChanged" ng-click="clickedOnThisUser(cUser)">
+          <div class="selection">{{cUser.name}}, {{cUser.surname}}</div>
+        </div>
+      </div>
+      <label class="centrer control-label">User selectioné <span class="red">*</span> : {{userToAdd.name}}, {{userToAdd.surname}}</label>
+
+      <br><br>
+      <p>Sélectionnez le projet à associer à ce role :</p>
+      <div class="divScrollable">
+        <div ng-repeat="cProject in allProjetcsList" class="cursorChanged" ng-click="clickedOnThisProject(cProject)">
+          <div class="selection">{{cProject.title}}, {{cProject.year}}</div>
+        </div>
+      </div>
+      <label class="centrer control-label">Projet selectionné <span class="red">*</span> : {{projectToAdd.title}}</label>
+
+    </div>
+
+    <p class="centrer" >Ajouter {{userToAdd.surname}} {{userToAdd.name}} au projet {{projectToAdd.title}} en tant que {{nameChosen}} ?</p>
 
 
     <!-- VALIDATION -->
     <div class="form-group">
       <div class="col-sm-offset-3 col-sm-9">
-        <input type="submit" class="btn btn-default" value="Ajouter ce role" ng-disabled="registerRoleForm.$invalid"
+                <input id="validation" type="submit" class="btn btn-default" value="Ajouter" ng-disabled="registerRoleForm.$invalid"
                ng-click="validNewRole(nameChosen)"/>
       </div>
     </div>

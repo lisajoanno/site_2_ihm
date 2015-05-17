@@ -33,3 +33,22 @@
 .red {
   color:red;
 }
+
+.divScrollable{
+  height:100pt;
+  overflow:auto;
+}
+
+.selection:hover{
+  font-style: oblique;
+  font-weight: bold;
+}
+
+.maxScrollDiv{
+  height: 75%;
+  overflow:auto;
+}
+
+.centrer {
+  text-align: center;
+}
